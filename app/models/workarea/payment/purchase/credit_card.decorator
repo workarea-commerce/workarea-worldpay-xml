@@ -1,0 +1,36 @@
+module Workarea
+  decorate Payment::Purchase::CreditCard, with: :worldpay_xml_api do
+    decorated do
+      include Payment::CreditCardData
+      delegate :address, to: :tender
+    end
+
+    def complete!
+      return unless Workarea::Payment::StoreCreditCard.new(tender, options).save!
+
+      transaction.response = handle_active_merchant_errors do
+        gateway.purchase(
+          transaction.amount.cents,
+          tender.to_token_or_active_merchant,
+          transaction_options
+        )
+      end
+    end
+
+    private
+
+    def transaction_options
+      {
+        order_id: order_id,
+        pay_by_token: true,
+        token: tender.token,
+        shopper_id: tender.profile.email,
+        email: tender.profile.email,
+        address: billing_address,
+        order_content: order_content,
+        currency: currency_code
+      }
+    end
+  end
+end
+

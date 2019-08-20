@@ -1,0 +1,27 @@
+module Workarea
+  decorate Payment::StoreCreditCard, with: :worldpay_xml_api do
+    decorated do
+      include Payment::CreditCardData
+      delegate :address, to: :tender
+    end
+
+    def perform!
+      return true if @credit_card.token.present?
+
+      response = handle_active_merchant_errors do
+        gateway.create_token(@credit_card.to_active_merchant, token_options)
+      end
+
+      @credit_card.token = response.params["payment_token_id"]
+    end
+
+    private
+
+    def token_options
+      {
+        shopper_id: @credit_card.profile.email,
+        order_id:   @credit_card.profile.reference
+      }
+    end
+  end
+end

@@ -1,0 +1,10 @@
+module Workarea
+  decorate Payment::RefundTest, with: :worldpay_xml_api do
+    def payment
+      @payment ||= begin
+        order = create_order
+        create_payment(id: order.id, profile: profile)
+      end
+    end
+  end
+end

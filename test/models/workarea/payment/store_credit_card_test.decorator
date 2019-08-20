@@ -1,0 +1,11 @@
+module Workarea
+  decorate Payment::StoreCreditCardTest, with: :worldpay_xml_api do
+    def test_perform_stores_on_the_gateway
+      # test deleted in Workarea 3.3 - no longer valid
+    end
+
+    def test_save_persists_the_token
+      # test deleted in Workarea 3.3 - no longer valid
+    end
+  end
+end

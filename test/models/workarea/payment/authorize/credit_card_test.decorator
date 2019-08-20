@@ -1,0 +1,40 @@
+module Workarea
+  decorate Payment::Authorize::CreditCardTest, with: :worldpay_xml_api do
+    def test_cancel_voids_with_the_authorization_from_the_transaction
+       # test deleted in Workarea 3.3 - no longer valid
+    end
+
+    def test_complete_sets_transaction_attributes_on_an_error_response
+      tender.token = 3
+      operation = Payment::Authorize::CreditCard.new(tender, transaction)
+      operation.complete!
+      refute(transaction.success?, "expected transaction success? to be false")
+      assert_instance_of(
+        ActiveMerchant::Billing::Response,
+        transaction.response
+      )
+    end
+
+    def payment
+      @payment ||=
+        begin
+          profile = create_payment_profile
+          order = create_order
+          create_payment(
+            id: order.id,
+            profile_id: profile.id,
+            address: {
+              first_name: 'Ben',
+              last_name: 'Crouse',
+              street: '22 s. 3rd st.',
+              city: 'Philadelphia',
+              region: 'PA',
+              postal_code: '19106',
+              country: Country['US']
+            }
+          )
+        end
+    end
+
+  end
+end

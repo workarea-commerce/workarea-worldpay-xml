@@ -1,0 +1,28 @@
+module Workarea
+  decorate Payment::Refund::CreditCard, with: :worldpay_xml_api do
+    decorated do
+      include Payment::CreditCardData
+      delegate :address, to: :tender
+    end
+
+    def complete!
+      validate_reference!
+
+      transaction.response = handle_active_merchant_errors do
+        gateway.refund(
+          transaction.amount.cents,
+          transaction.reference.response.authorization,
+          transaction_options
+        )
+      end
+    end
+
+    private
+
+    def transaction_options
+      {
+         currency: currency_code
+      }
+    end
+  end
+end

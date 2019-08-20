@@ -1,0 +1,7 @@
+module Workarea
+  decorate Payment::Tender::CreditCard, with: :worldpay_xml_api do
+    def to_token_or_active_merchant
+      token.presence || to_active_merchant
+    end
+  end
+end
