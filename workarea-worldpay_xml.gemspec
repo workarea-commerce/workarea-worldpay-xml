@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Jeff Yucis']
   s.email       = ['jyucis@weblinc.com']
   s.homepage    = 'https://github.com/workarea-commerce/workarea-worldpay-xml'
-  s.summary     = 'Worldpay XML payment processor'
-  s.description = 'Worldpay payment processor that uses the XML API.'
+  s.summary     = 'Integrates Worldpay with Workarea Commerce Platform'
+  s.description = 'Integrates Worldpay with Workarea Commerce Platform using the XML API.'
   s.files = `git ls-files`.split("\n")
   s.license = 'Business Software License'
 
