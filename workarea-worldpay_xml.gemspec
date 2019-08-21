@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Worldpay XML payment processor'
   s.description = 'Worldpay payment processor that uses the XML API.'
   s.files = `git ls-files`.split("\n")
+  s.license = 'Business Software License'
 
   s.add_dependency 'workarea', '~> 3.x'
 end
