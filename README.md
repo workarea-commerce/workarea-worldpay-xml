@@ -1,32 +1,27 @@
-Workarea Worldpay Xml
+Workarea Worldpay XML
 ================================================================================
 
 Worldpay Xml Payment Processor plugin for the Workarea platform.
 
-Installation
+Getting Started
 --------------------------------------------------------------------------------
 
-Add the following block to your gem file:
+Add the gem to your application's Gemfile:
 
-    # ...
-    gem 'workarea-worldpay-xml', source: 'https://gems.weblinc.com'
-    # ...
-
-Or use a source block:
-
-    # ...
-    source 'https://gems.weblinc.com' do
-      gem 'workarea-worldpay-xml'
-    end
-    # ...
+```ruby
+# ...
+gem 'workarea-worldpay_xml'
+# ...
+```
 
 Update your application's bundle.
 
-    cd path/to/application
-    bundle
+```bash
+cd path/to/application
+bundle
+```
 
-
-Add the following to your secrets file:
+Add the following to your `config/secrets.yml` file:
 
     # ...
     worldpay:
@@ -36,28 +31,24 @@ Add the following to your secrets file:
     # ...
 
 
-*By default tokenzization is not enabled in both live and sandbox account. Be sure to request that tokenzation
-is enabled after installing the plugin.*
+*By default tokenzization is not enabled in both live and sandbox account. Be sure to request that tokenzation is enabled after installing the plugin.*
 
 Documentation and Testing
 --------------------------------------------------------------------------------
 
-Worldpay does not issue freestanding sandbox accounts for testing. An account must be provisioned through
-a Worldpay account manager.
+Worldpay does not issue freestanding sandbox accounts for testing. An account must be provisioned through a Worldpay account manager.
 
 Documentation for the Worldpay xml gateway can be found at [http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/home.htm](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/home.htm)
 
 A list of test credit cards and testing values can be found at [http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm)
 
 
-Workarea Platform Documentation
+Workarea Commerce Documentation
 --------------------------------------------------------------------------------
 
-See [http://developer.weblinc.com](http://developer.weblinc.com) for Workarea platform documentation.
+See [https://developer.workarea.com](https://developer.workarea.com) for Workarea Commerce documentation.
 
-Copyright & Licensing
+License
 --------------------------------------------------------------------------------
 
-Copyright WebLinc 2018. All rights reserved.
-
-For licensing, contact sales@workarea.com.
+Workarea Worldpay XML is released under the [Business Software License](LICENSE)
